@@ -59,6 +59,7 @@ DWORD WINAPI ProcessClient(LPVOID arg)
 	retval = recv(client_sock, buf, BUFSIZE, 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("recv()");
+		return 0;
 	}
 	len = retval;
 	// 받은 데이터 출력
@@ -73,6 +74,7 @@ DWORD WINAPI ProcessClient(LPVOID arg)
 	retval = send(client_sock, buf, strlen(buf), 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("send()");
+		return 0;
 	}
 
 	printf("[TCP/%s:%d 보낸값] %s, share = %s %d바이트\n", inet_ntoa(clientaddr.sin_addr),
@@ -81,6 +83,7 @@ DWORD WINAPI ProcessClient(LPVOID arg)
 	retval = recv(client_sock, buf, BUFSIZE, 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("recv()");
+		return 0;
 	}
 
 	buf[retval] = '\0';
@@ -89,6 +92,30 @@ DWORD WINAPI ProcessClient(LPVOID arg)
 	EnterCriticalSection(&hCriticalSection);
 	share = atoi(buf);
 	LeaveCriticalSection(&hCriticalSection);
+
+	// 클라이언트와 데이터 통신
+	while (1) {
+		// 데이터 받기
+		retval = recv(client_sock, buf, BUFSIZE, 0);
+		if (retval == SOCKET_ERROR) {
+			err_display("recv()");
+			break;
+		}
+		else if (retval == 0)
+			break;
+
+		// 받은 데이터 출력
+		buf[retval] = '\0';
+		printf("[TCP/%s:%d] %s\n", inet_ntoa(clientaddr.sin_addr),
+			ntohs(clientaddr.sin_port), buf);
+
+		// 데이터 보내기
+		retval = send(client_sock, buf, retval, 0);
+		if (retval == SOCKET_ERROR) {
+			err_display("send()");
+			break;
+		}
+	}
 
 	// closesocket()
 	closesocket(client_sock);
