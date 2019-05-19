@@ -1,0 +1,12 @@
+﻿  ParkClient.cpp
+c:\users\park 95\documents\visual studio 2017\projects\parkclient\parkclient\parkclient.cpp(25): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+c:\users\park 95\documents\visual studio 2017\projects\parkclient\parkclient\parkclient.cpp(32): warning C4101: 'err_sock' :참조되지 않은 지역 변수입니다.
+c:\users\park 95\documents\visual studio 2017\projects\parkclient\parkclient\parkclient.cpp(50): warning C4101: 'err' :참조되지 않은 지역 변수입니다.
+c:\users\park 95\documents\visual studio 2017\projects\parkclient\parkclient\parkclient.cpp(78): warning C4101: 'err' :참조되지 않은 지역 변수입니다.
+c:\users\park 95\documents\visual studio 2017\projects\parkclient\parkclient\parkclient.cpp(91): warning C4101: 'err' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다.
+  53 of 53 functions (100.0%) were compiled.
+    52 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  ParkClient.vcxproj -> C:\Users\Park 95\Documents\Visual Studio 2017\Projects\ParkClient\Release\ParkClient.exe
