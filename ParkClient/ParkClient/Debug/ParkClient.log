@@ -1,0 +1,5 @@
+﻿  pch.cpp
+  ParkClient.cpp
+c:\users\park 95\documents\visual studio 2017\projects\parkclient\parkclient\parkclient.cpp(35): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(1831): note: 'inet_addr' 선언을 참조하십시오.
+  ParkClient.vcxproj -> C:\Users\Park 95\Documents\Visual Studio 2017\Projects\ParkClient\Debug\ParkClient.exe
