@@ -1,1 +1,7 @@
-﻿LINK : fatal error LNK1104: 'C:\Users\김홍준\Desktop\HW_server\x64\Debug\HW_server.exe' 파일을 열 수 없습니다.
+﻿  Comunication.cpp
+C:\Users\김홍준\Documents\GitHub\server_HW\서버 과제 김홍준\HW_server\HW_server\Comunication.cpp(48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  error.cpp
+  initialization.cpp
+  main_server.cpp
+  코드를 생성하고 있습니다...
+  HW_server.vcxproj -> C:\Users\김홍준\Documents\GitHub\server_HW\서버 과제 김홍준\HW_server\x64\Debug\HW_server.exe
