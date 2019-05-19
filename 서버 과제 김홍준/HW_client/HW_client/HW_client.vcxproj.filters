@@ -18,5 +18,31 @@
     <ClCompile Include="main_client.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="error.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="initialization.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Communication.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="error.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="initialization.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Communication.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="main_client.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

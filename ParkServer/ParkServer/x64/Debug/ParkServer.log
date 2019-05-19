@@ -1,0 +1,6 @@
+﻿  ParkServer.cpp
+c:\users\김홍준\documents\github\server_hw\parkserver\parkserver\parkserver.cpp(28): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+c:\users\김홍준\documents\github\server_hw\parkserver\parkserver\parkserver.cpp(35): warning C4101: 'err_sock' :참조되지 않은 지역 변수입니다.
+c:\users\김홍준\documents\github\server_hw\parkserver\parkserver\parkserver.cpp(131): warning C4101: 'err' :참조되지 않은 지역 변수입니다.
+c:\users\김홍준\documents\github\server_hw\parkserver\parkserver\parkserver.cpp(149): warning C4101: 'err' :참조되지 않은 지역 변수입니다.
+  ParkServer.vcxproj -> C:\Users\김홍준\Documents\GitHub\server_HW\ParkServer\x64\Debug\ParkServer.exe

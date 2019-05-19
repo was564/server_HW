@@ -123,7 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Communication.cpp" />
+    <ClCompile Include="error.cpp" />
+    <ClCompile Include="initialization.cpp" />
     <ClCompile Include="main_client.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Communication.h" />
+    <ClInclude Include="error.h" />
+    <ClInclude Include="header.h" />
+    <ClInclude Include="main_client.h" />
+    <ClInclude Include="initialization.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
