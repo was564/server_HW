@@ -3,7 +3,6 @@
 
 int main(int argc, char* argv[])
 {
-	error e;
 	initialization init;
 	Communication com;
 	

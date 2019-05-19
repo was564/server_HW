@@ -1,2 +1,6 @@
-﻿  main_client.cpp
-  HW_client.vcxproj -> C:\Users\김홍준\source\repos\HW_client\Debug\HW_client.exe
+﻿  Communication.cpp
+  error.cpp
+  initialization.cpp
+  main_client.cpp
+  코드를 생성하고 있습니다...
+  HW_client.vcxproj -> C:\Users\김홍준\Documents\GitHub\server_HW\서버 과제 김홍준\HW_client\Debug\HW_client.exe
