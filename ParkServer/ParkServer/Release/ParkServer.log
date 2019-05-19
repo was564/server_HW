@@ -1,0 +1,11 @@
+﻿  ParkServer.cpp
+c:\users\park 95\documents\visual studio 2017\projects\parkserver\parkserver\parkserver.cpp(27): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+c:\users\park 95\documents\visual studio 2017\projects\parkserver\parkserver\parkserver.cpp(34): warning C4101: 'err_sock' :참조되지 않은 지역 변수입니다.
+c:\users\park 95\documents\visual studio 2017\projects\parkserver\parkserver\parkserver.cpp(130): warning C4101: 'err' :참조되지 않은 지역 변수입니다.
+c:\users\park 95\documents\visual studio 2017\projects\parkserver\parkserver\parkserver.cpp(148): warning C4101: 'err' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다.
+  8 of 28 functions (28.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  ParkServer.vcxproj -> C:\Users\Park 95\Documents\Visual Studio 2017\Projects\ParkServer\Release\ParkServer.exe
