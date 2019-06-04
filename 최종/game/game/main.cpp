@@ -7,10 +7,7 @@ int main() {
 	bool power = true;
 	while (power) {
 		srand((unsigned int)time(NULL));
-		for (int i = 0; i < 100; i++) {
-			gotoxy(0, i);
-			printf("                                                                                                                            ");
-		}
+		system("cls");
 		init();
 		int turn = 0;
 		int playerCount;
@@ -69,11 +66,15 @@ int main() {
 				break;
 			}
 			else if (answer == 'y') {
+				power = true;
 				break;
 			}
 			else {
 				continue;
 			}
+		}
+		for (int i = 0; i < objectCount; i++) {
+			delete object[i];
 		}
 	}
 
@@ -82,10 +83,7 @@ int main() {
 
 void gameOver(GameObject* object[], int objectCount)
 {
-	for (int i = 0; i < 100; i++) {
-		gotoxy(0, i);
-		printf("                                                                                                                            ");
-	}
+	system("cls");
 	gotoxy(0, 0);
 	printf("	Á¡¼ö : ");
 	int max = 0;
