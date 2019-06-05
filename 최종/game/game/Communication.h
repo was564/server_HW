@@ -1,20 +1,19 @@
 #pragma once
-#define _WINSOCK_DEPRECATED_NO_WARNINGS // 최신 VC++ 컴파일 시 경고 방지
-#pragma comment(lib, "ws2_32")
-#include <winsock2.h>
-#include <stdlib.h>
-#include <iostream>
-
-using namespace std;
-
-#define SERVERIP   "127.0.0.1"
-#define SERVERPORT 9000
-#define BUFSIZE    512
+#include "stdafx.h"
 
 class Communication
 {
 public:
 	Communication();
 	~Communication();
+	void err_quit(const char *msg);
+	void err_display(const char *msg);
+	int recvn(SOCKET s, char *buf, int len, int flags);
+	virtual void sendn();
+protected:
+	int retval;
+	char buf[BUFSIZE + 1];
+	int len;
+	SOCKET sock;
 };
 
