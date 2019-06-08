@@ -53,7 +53,7 @@ void Communication::err_display(const char * msg)
 }
 
 int Communication::recvn(SOCKET s, char *buf, int len, int flags)
-{ // 소켓에 따라 바꿔야 함
+{
 	int received;
 	char *ptr = buf;
 	int left = len;
@@ -71,6 +71,63 @@ int Communication::recvn(SOCKET s, char *buf, int len, int flags)
 	return (len - left);
 }
 
-void Communication::sendn()
+void Communication::loginInput()
+{
+	cout << "id를 입력하세요 : ";
+	cin >> id;
+	cout << "Password를 입력하세요 : ";
+	cin >> password;
+}
+
+void Communication::loginSend()
+{
+	buf[0] = 1; // 1 = login header
+	buf[1] = strlen(id);
+	strcpy(&buf[2], id);
+	buf[4 + strlen(id)] = strlen(password);
+	strcpy(&buf[5 + strlen(id)], password);
+	retval = send(sock, buf, strlen(buf), 0);
+	if (retval == SOCKET_ERROR) {
+		err_display("send()");
+		exit(1);
+	}
+}
+
+bool Communication::loginRecv()
+{
+	retval = recvn(sock, buf, retval, 0);
+	if (retval == SOCKET_ERROR) {
+		err_display("recv()");
+		exit(1);
+	}
+	if (buf[0] == 1) {
+		if (buf[1] == 0) {
+			cout << "로그인에 실패하였습니다.";
+			return false;
+		}
+		else if (buf[1] == 1) {
+			cout << "로그인에 성공하였습니다.";
+			return true;
+		}
+	}
+	else {
+		return false;
+	}
+	return false;
+}
+
+void Communication::gameSend()
+{
+}
+
+void Communication::gameRecv()
+{
+}
+
+void Communication::chatSend()
+{
+}
+
+void Communication::chatRecv()
 {
 }
