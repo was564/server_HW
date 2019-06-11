@@ -25,6 +25,8 @@ Communication::Communication()
 
 Communication::~Communication()
 {
+	closesocket(sock);
+	WSACleanup();
 }
 
 void Communication::err_quit(const char * msg)

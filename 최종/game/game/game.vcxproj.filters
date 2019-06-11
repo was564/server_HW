@@ -44,10 +44,10 @@
     <ClInclude Include="Enemy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="Communication.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Communication.h">
+    <ClInclude Include="Init.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

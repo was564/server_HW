@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "Init.h"
 #include "GameObject.h"
 #include "Enemy.h"
 #include <cmath>

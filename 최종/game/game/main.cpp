@@ -5,6 +5,10 @@ void init();
 
 int main() {
 	bool power = true;
+	Communication com;
+	com.loginInput();
+	com.loginSend();
+	com.loginRecv();
 	while (power) {
 		srand((unsigned int)time(NULL));
 		system("cls");
