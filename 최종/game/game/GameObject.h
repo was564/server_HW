@@ -10,6 +10,8 @@ public:
 	GameObject(int objectCount);
 	~GameObject();
 
+	virtual void addscore(int score);
+	virtual void damage();
 	virtual int getScore();
 	virtual bool dead();
 	virtual void processInput(GameObject* object[], int objectCount);

@@ -1,9 +1,8 @@
 #include "Player.h"
 
 
-
-Player::Player(int objectCount)
-	:GameObject(objectCount), hp(4), score(0)
+Player::Player(int objectCount, Communication* com)
+	:GameObject(objectCount), hp(4), score(0), com(com)
 {
 }
 
@@ -27,12 +26,15 @@ void Player::attack(int id, int objectCount, GameObject* object[])
 			Sleep(2000);
 			enemy->dead(object, objectCount);
 			update();
+			com->gameSendE(id, getPosition().x, getPosition().y,
+				enemy->getPosition().x, enemy->getPosition().y);
 		}
 		else {
 			gotoxy(0, HEIGHT + 1);
 			printf("공격이 막혔습니다.");
 			Sleep(2000);
 			update();
+			com->gameSend(getPosition().x, getPosition().y);
 		}
 	}
 	else {
@@ -48,12 +50,14 @@ void Player::attack(int id, int objectCount, GameObject* object[])
 			Sleep(2000);
 			player->update();
 			update();
+			com->gameSendP(id, getPosition().x, getPosition().y);
 		}
 		else {
 			gotoxy(0, HEIGHT + 1);
 			printf("공격이 막혔습니다.");
 			Sleep(2000);
 			update();
+			com->gameSend(getPosition().x, getPosition().y);
 		}
 	}
 }

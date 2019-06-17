@@ -1,11 +1,5 @@
 ﻿  Communication.cpp
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(85,21): warning C4267:  '=': 'size_t'에서 'char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(87,40): warning C4267:  '=': 'size_t'에서 'char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Enemy.cpp
-  GameObject.cpp
-  main.cpp
-  Player.cpp
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(89,41): warning C4267:  '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Player.cpp(241,14): warning C4101:  'obj' :참조되지 않은 지역 변수입니다.
+C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(87,21): warning C4267:  '=': 'size_t'에서 'char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(89,40): warning C4267:  '=': 'size_t'에서 'char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(91,41): warning C4267:  '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   game.vcxproj -> C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\x64\Debug\game.exe

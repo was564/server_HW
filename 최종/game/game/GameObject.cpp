@@ -9,6 +9,14 @@ GameObject::~GameObject()
 {
 }
 
+void GameObject::addscore(int score)
+{
+}
+
+void GameObject::damage()
+{
+}
+
 int GameObject::getScore()
 {
 	return 0;

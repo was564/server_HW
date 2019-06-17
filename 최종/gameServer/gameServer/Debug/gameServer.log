@@ -1,0 +1,5 @@
+﻿  Communication.cpp
+  main.cpp
+  코드를 생성하고 있습니다...
+Communication.obj : error LNK2001: "unsigned int * play" (?play@@3PAIA) 외부 기호를 확인할 수 없습니다.
+C:\Users\김홍준\Documents\GitHub\server_HW\최종\gameServer\Debug\gameServer.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

@@ -14,3 +14,4 @@ using namespace std;
 #define HEIGHT 20
 #define ENEMY 5
 #define MAX 20
+#define PLAYER 2

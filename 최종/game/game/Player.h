@@ -1,5 +1,6 @@
 #pragma once
 #include "Init.h"
+#include "Communication.h"
 #include "GameObject.h"
 #include "Enemy.h"
 #include <cmath>
@@ -8,9 +9,9 @@ class Player : public GameObject
 {
 	int hp;
 	int score;
-
+	Communication* com;
 public:
-	Player(int objectCount);
+	Player(int objectCount, Communication* com);
 	~Player();
 
 	void attack(int id, int objectCount, GameObject* object[]);

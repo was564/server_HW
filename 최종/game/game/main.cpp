@@ -5,16 +5,19 @@ void init();
 
 int main() {
 	bool power = true;
+	int pass;
 	Communication com;
 	com.loginInput();
 	com.loginSend();
-	com.loginRecv();
+	if (!com.loginRecv(&pass)) {
+		Sleep(3000);
+		return 0;
+	}
+	srand(com.gameStart());
 	while (power) {
-		srand((unsigned int)time(NULL));
 		system("cls");
 		init();
-		int turn = 0;
-		int playerCount;
+		int playerCount = 2;
 		int objectCount = 0;
 		int survive;
 		bool gameend = false;
@@ -22,11 +25,8 @@ int main() {
 		for (int i = 0; i < ENEMY; i++) {
 			object[i] = new Enemy(objectCount++);
 		}
-		gotoxy(0, HEIGHT + 1);
-		cout << "플레이어 수 : ";
-		cin >> playerCount;
 		for (int i = ENEMY; i < ENEMY + playerCount; i++) {
-			object[i] = new Player(objectCount++);
+			object[i] = new Player(objectCount++, &com);
 		}
 		objectCount = ENEMY + playerCount;
 		while (true) {
@@ -34,23 +34,22 @@ int main() {
 				object[i]->update();
 			}
 			for (int i = ENEMY; i < ENEMY + playerCount; i++) {
-				object[i]->processInput(object, objectCount);
-				turn++;
-				gotoxy(WIDTH + 2, 0);
-				printf("턴 : %d", turn);
-				survive = 0;
-				for (int i = ENEMY; i < ENEMY + playerCount; i++) {
-					if (!object[i]->dead()) {
-						survive++;
+				if (i == pass + ENEMY) {
+					object[i]->processInput(object, objectCount);
+					gotoxy(WIDTH + 2, 0);
+					survive = 0;
+					for (int i = ENEMY; i < ENEMY + playerCount; i++) {
+						if (!object[i]->dead()) {
+							survive++;
+						}
+					}
+					if (survive <= 1) {
+						gameend = true;
+						break;
 					}
 				}
-				if (survive <= 1) {
-					gameend = true;
-					break;
-				}
-				else if (turn >= 20) {
-					gameend = true;
-					break;
+				else {
+					com.gameRecv(i, object);
 				}
 			}
 			if (gameend) {
