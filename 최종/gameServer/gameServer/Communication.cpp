@@ -31,11 +31,15 @@ void Communication::loginRecv()
 		err_display("recv()");
 		exit(1);
 	}
-	if (buf[0] != 1) {
-		return;
+	if (buf[0] == 1) {
+		strncpy(id, &buf[2], (int)buf[1]);
+		strncpy(pw, &buf[3 + strlen(id)], (int)buf[2 + strlen(id)]);
 	}
-	strncpy(id, &buf[2], (int)buf[1]);
-	strncpy(pw, &buf[3 + strlen(id)], (int)buf[2 + strlen(id)]);
+	else if (buf[0] == 7) {
+		strncpy(id, &buf[2], (int)buf[1]);
+		strncpy(pw, &buf[3 + strlen(id)], (int)buf[2 + strlen(id)]);
+		getRegist(id, pw);
+	}
 }
 
 bool Communication::loginSend(int index)
@@ -43,29 +47,27 @@ bool Communication::loginSend(int index)
 	char id[20];
 	char pw[20];
 	memset(buf, 0, sizeof(buf));
-	buf[0] = 1;
 	ifstream file("login.txt");
-	int count = 0;
+	bool check = false;
 	while (!file.eof()) {
-		buf[2] = 0;
+		check = false;
 		file.getline(id, 20);
 		file.getline(pw, 20);
 		if (!strcmp(id, this->id)) {
 			if (!strcmp(pw, this->pw)) {
-				buf[2] = 1;
+				check = true;
 				break;
 			}
 		}
-		count++;
 	}
-	buf[1] = count;
+	socket2(buf, index, check);
 
 	retval = send(client_sock, buf, retval, 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("send()");
 		exit(1);
 	}
-	if (buf[2] == 1) {
+	if (check) {
 		pass = index;
 		play[pass] = client_sock;
 		return true;
@@ -75,12 +77,18 @@ bool Communication::loginSend(int index)
 	}
 }
 
+void Communication::getRegist(char* id, char* pw)
+{
+	ofstream outFile("login.txt", ios::app);
+	outFile << id << endl;
+	outFile << pw << endl;
+	outFile.close();
+}
+
 void Communication::gameStart()
 {
 	memset(buf, 0, sizeof(buf));
-	int seed = (int)time(NULL);
-	buf[0] = 2;
-	buf[1] = seed;
+	socket3(buf);
 	retval = send(client_sock, buf, retval, 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("send()");
@@ -96,7 +104,7 @@ void Communication::gameRecvNSend()
 		err_display("recv()");
 		exit(1);
 	}
-	if (buf[0] >= 3 && buf[0] <= 5) {
+	if (buf[0] >= 4 && buf[0] <= 6) {
 		for (int i = 0; i < PLAYER; i++) {
 			if (i == pass) {
 				continue;
@@ -108,9 +116,6 @@ void Communication::gameRecvNSend()
 			}
 		}
 	}
-	else {
-		gameRecvNSend();
-	}
 }
 
 void Communication::file_init()
@@ -120,4 +125,10 @@ void Communication::file_init()
 	outFile << "1" << endl;
 	outFile << "2" << endl;
 	outFile << "2" << endl;
+	outFile.close();
+}
+
+int Communication::getPass()
+{
+	return pass;
 }

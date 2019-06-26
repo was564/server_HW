@@ -5,10 +5,19 @@ void init();
 
 int main() {
 	bool power = true;
-	int pass;
+	int pass, n = 0;
 	Communication com;
-	com.loginInput();
-	com.loginSend();
+	while (n > 3 || n < 1) {
+		printf("원하는 항목을 고르세요.\n");
+		printf("1 : 회원가입, 2 : 로그인, 3 : 종료\n");
+		scanf("%d", &n);
+		system("cls");
+	}
+	if (n == 3) {
+		return 0;
+	}
+	com.loginInput(n);
+	com.loginSend(n);
 	if (!com.loginRecv(&pass)) {
 		Sleep(3000);
 		return 0;

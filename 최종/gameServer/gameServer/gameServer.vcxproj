@@ -124,20 +124,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Communication.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Init.h" />
     <ClInclude Include="Initialization.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Socket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Communication.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="Initialization.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Socket.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

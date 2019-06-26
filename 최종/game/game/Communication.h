@@ -1,8 +1,9 @@
 #pragma once
 #include "Init.h"
 #include "GameObject.h"
+#include "Socket.h"
 
-class Communication
+class Communication : public Socket
 {
 	char id[20];
 	char password[20];
@@ -17,20 +18,20 @@ public:
 	void err_display(const char *msg);
 	int recvn(SOCKET s, char *buf, int len, int flags);
 
-	void loginInput();
-	// header, id length, id, pw length, pw
-	void loginSend();
-	// header, player, t/f
+	void loginInput(int n);
+	// header 1 || 7, id length, id, pw length, pw
+	void loginSend(int n);
+	// header 2, player, t/f
 	bool loginRecv(int* pass);
 
-	// header 2, seed
+	// header 3, seed
 	int gameStart();
 
-	// header 3, object, x, y, x, y
+	// header 4, object, x, y, x, y
 	void gameSendE(int pass, int a, int b, int x, int y);
-	// header 4, object, x, y
+	// header 5, object, x, y
 	void gameSendP(int pass, int a, int b);
-	// header 5, x, y
+	// header 6, x, y
 	void gameSend(int a, int b);
 
 	//

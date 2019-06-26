@@ -73,21 +73,33 @@ int Communication::recvn(SOCKET s, char *buf, int len, int flags)
 	return (len - left);
 }
 
-void Communication::loginInput()
+void Communication::loginInput(int n)
 {
-	cout << "id를 입력하세요 : ";
-	cin >> id;
-	cout << "Password를 입력하세요 : ";
-	cin >> password;
+	if (n == 2) {
+		cout << "id를 입력하세요 : ";
+		cin >> id;
+		cout << "Password를 입력하세요 : ";
+		cin >> password;
+	}
+	else if (n == 1) {
+		cout << "가입하실 id를 입력하세요 : ";
+		cin >> id;
+		cout << "가입하실 Password를 입력하세요 : ";
+		cin >> password;
+		cout << "회원가입이 완료되었습니다." << endl;
+	}
 }
 
-void Communication::loginSend()
+void Communication::loginSend(int n)
 {
-	buf[0] = 1; // 1 = login header
-	buf[1] = strlen(id);
-	strcpy(&buf[2], id);
-	buf[2 + strlen(id)] = strlen(password);
-	strcpy(&buf[3 + strlen(id)], password);
+	memset(buf, 0, sizeof(buf));
+	if (n == 2) {
+		socket1(buf, id, password);
+	}
+	else if (n == 1) {
+		socket7(buf, id, password);
+		cout << "이 계정으로 로그인합니다." << endl;
+	}
 	retval = send(sock, buf, strlen(buf), 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("send()");
@@ -102,7 +114,7 @@ bool Communication::loginRecv(int* pass)
 		err_display("recv()");
 		exit(1);
 	}
-	if ((int)buf[0] == 1) {
+	if ((int)buf[0] == 2) {
 		if ((int)buf[2] == 0) {
 			cout << "로그인에 실패하였습니다.";
 			return false;
@@ -126,21 +138,13 @@ int Communication::gameStart()
 		err_display("recv()");
 		exit(1);
 	}
-	if (buf[0] != 2) {
-		gameStart();
-	}
 	return buf[1];
 }
 
 void Communication::gameSendE(int pass, int a, int b, int x, int y)
 {
 	memset(buf, 0, sizeof(buf));
-	buf[0] = 3;
-	buf[1] = pass;
-	buf[2] = a;
-	buf[3] = b;
-	buf[4] = x;
-	buf[5] = y;
+	socket4(buf, pass, a, b, x, y);
 	retval = send(sock, buf, strlen(buf), 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("send()");
@@ -148,13 +152,10 @@ void Communication::gameSendE(int pass, int a, int b, int x, int y)
 	}
 }
 
-void Communication::gameSendP(int pass, int a, int b)
+void Communication::gameSendP(int object, int a, int b)
 {
 	memset(buf, 0, sizeof(buf));
-	buf[0] = 4;
-	buf[1] = pass;
-	buf[2] = a;
-	buf[3] = b;
+	socket5(buf, object, a, b);
 	retval = send(sock, buf, strlen(buf), 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("send()");
@@ -165,9 +166,8 @@ void Communication::gameSendP(int pass, int a, int b)
 void Communication::gameSend(int a, int b)
 {
 	memset(buf, 0, sizeof(buf));
-	buf[0] = 5;
-	buf[1] = a;
-	buf[2] = b;
+	socket6(buf, a, b);
+	retval = send(sock, buf, strlen(buf), 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("send()");
 		exit(1);
@@ -182,28 +182,27 @@ void Communication::gameRecv(int player, GameObject* object[])
 		err_display("recv()");
 		exit(1);
 	}
-	if (buf[0] == 3) {
+	if (buf[0] == 4) {
 		object[player]->setPosition(buf[2], buf[3]);
 		object[buf[1]]->setPosition(buf[4], buf[5]);
 		object[player]->addscore(10);
 	}
-	else if (buf[0] == 4) {
+	else if (buf[0] == 5) {
 		object[player]->setPosition(buf[2], buf[3]);
 		object[buf[1]]->damage();
 		object[player]->addscore(20);
 	}
-	else if (buf[0] == 5) {
+	else if (buf[0] == 6) {
 		object[player]->setPosition(buf[1], buf[2]);
-	}
-	else {
-		gameRecv(player, object);
 	}
 }
 
 void Communication::chatSend()
 {
+
 }
 
 void Communication::chatRecv()
 {
+
 }

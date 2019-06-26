@@ -17,7 +17,7 @@ void Player::attack(int id, int objectCount, GameObject* object[])
 	if (id < ENEMY) {
 		probability = rand() % 10;
 		Enemy* enemy = dynamic_cast<Enemy*> (object[id]);
-		if (probability >= 3) {
+		if (probability >= 10) {
 			gotoxy(0, HEIGHT + 1);
 			printf("공격을 맞췄습니다.");
 			addScore(10);
@@ -42,7 +42,7 @@ void Player::attack(int id, int objectCount, GameObject* object[])
 		Player* player = dynamic_cast<Player*> (object[id]);
 		if (!player) return;
 
-		if (probability >= 5) {
+		if (probability >= 10) {
 			gotoxy(0, HEIGHT + 1);
 			printf("공격을 맞췄습니다.");
 			addScore(20);
