@@ -8,7 +8,7 @@ int main() {
 	int pass, n = 0;
 	Communication com;
 	while (n > 3 || n < 1) {
-		printf("원하는 항목을 고르세요.\n");
+		printf("원하시는 항목을 선택해주세요.\n");
 		printf("1 : 회원가입, 2 : 로그인, 3 : 종료\n");
 		scanf("%d", &n);
 		system("cls");

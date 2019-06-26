@@ -3,9 +3,10 @@
 #include "Communication.h"
 #include "GameObject.h"
 #include "Enemy.h"
+#include "Socket.h"
 #include <cmath>
 
-class Player : public GameObject
+class Player : public GameObject, public Socket
 {
 	int hp;
 	int score;

@@ -1,4 +1,4 @@
-#include "Communication.h"
+ï»¿#include "Communication.h"
 
 
 
@@ -76,17 +76,17 @@ int Communication::recvn(SOCKET s, char *buf, int len, int flags)
 void Communication::loginInput(int n)
 {
 	if (n == 2) {
-		cout << "id¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+		cout << "idë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 		cin >> id;
-		cout << "Password¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+		cout << "Passwordë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 		cin >> password;
 	}
 	else if (n == 1) {
-		cout << "°¡ÀÔÇÏ½Ç id¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+		cout << "ê°€ìž…í•˜ì‹  idë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 		cin >> id;
-		cout << "°¡ÀÔÇÏ½Ç Password¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+		cout << "ê°€ìž…í•˜ì‹  Passwordë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 		cin >> password;
-		cout << "È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl;
+		cout << "íšŒì›ê°€ìž…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 	}
 }
 
@@ -98,7 +98,7 @@ void Communication::loginSend(int n)
 	}
 	else if (n == 1) {
 		socket7(buf, id, password);
-		cout << "ÀÌ °èÁ¤À¸·Î ·Î±×ÀÎÇÕ´Ï´Ù." << endl;
+		cout << "ì´ ê³„ì •ìœ¼ë¡œ ë¡œê·¸ì¸í•©ë‹ˆë‹¤." << endl;
 	}
 	retval = send(sock, buf, strlen(buf), 0);
 	if (retval == SOCKET_ERROR) {
@@ -116,11 +116,11 @@ bool Communication::loginRecv(int* pass)
 	}
 	if ((int)buf[0] == 2) {
 		if ((int)buf[2] == 0) {
-			cout << "·Î±×ÀÎ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.";
+			cout << "ë¡œê·¸ì¸ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			return false;
 		}
 		else if ((int)buf[2] == 1) {
-			cout << "·Î±×ÀÎ¿¡ ¼º°øÇÏ¿´½À´Ï´Ù.";
+			cout << "ë¡œê·¸ì¸ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.";
 			*pass = buf[1];
 			return true;
 		}
@@ -177,32 +177,52 @@ void Communication::gameSend(int a, int b)
 void Communication::gameRecv(int player, GameObject* object[])
 {
 	memset(buf, 0, sizeof(buf));
-	retval = recvn(sock, buf, retval, 0);
+	retval = recv(sock, buf, retval, 0);
 	if (retval == SOCKET_ERROR) {
 		err_display("recv()");
 		exit(1);
 	}
 	if (buf[0] == 4) {
+		gotoxy(object[player]->getPosition().x, object[player]->getPosition().y);
+		printf("  ");
+		gotoxy(object[buf[1] - 10]->getPosition().x, object[buf[1] - 10]->getPosition().y);
+		printf("  ");
 		object[player]->setPosition(buf[2], buf[3]);
-		object[buf[1]]->setPosition(buf[4], buf[5]);
+		object[buf[1] - 10]->setPosition(buf[4], buf[5]);
 		object[player]->addscore(10);
+		object[player]->update();
+		object[buf[1] - 10]->update();
 	}
 	else if (buf[0] == 5) {
+		gotoxy(object[player]->getPosition().x, object[player]->getPosition().y);
+		printf("  ");
 		object[player]->setPosition(buf[2], buf[3]);
-		object[buf[1]]->damage();
+		object[buf[1] - 10]->damage();
 		object[player]->addscore(20);
+		object[player]->update();
+		object[buf[1] - 10]->update();
 	}
 	else if (buf[0] == 6) {
+		gotoxy(object[player]->getPosition().x, object[player]->getPosition().y);
+		printf("  ");
 		object[player]->setPosition(buf[1], buf[2]);
+		object[player]->update();
+	}
+	else if (buf[0] == 8) {
+		gotoxy(WIDTH + 3, 5);
+		printf("                                                                                      ");
+		printf("p%d : %s", player - 4, &buf[1]);
+		gameRecv(player, object);
 	}
 }
 
-void Communication::chatSend()
+void Communication::chatSend(char* chat)
 {
-
-}
-
-void Communication::chatRecv()
-{
-
+	memset(buf, 0, sizeof(buf));
+	socket8(buf, chat);
+	retval = send(sock, buf, strlen(buf), 0);
+	if (retval == SOCKET_ERROR) {
+		err_display("send()");
+		exit(1);
+	}
 }

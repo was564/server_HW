@@ -1,6 +1,7 @@
 #pragma once
 #include "Init.h"
 #include "error.h"
+#include <fstream>
 
 extern DWORD WINAPI ProcessClient(LPVOID arg);
 

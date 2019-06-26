@@ -19,25 +19,24 @@ public:
 	int recvn(SOCKET s, char *buf, int len, int flags);
 
 	void loginInput(int n);
-	// header 1 || 7, id length, id, pw length, pw
+	// header, id length, id, pw length, pw
 	void loginSend(int n);
-	// header 2, player, t/f
+	// header, player, t/f
 	bool loginRecv(int* pass);
 
-	// header 3, seed
+	// header 2, seed
 	int gameStart();
 
-	// header 4, object, x, y, x, y
+	// header 3, object, x, y, x, y
 	void gameSendE(int pass, int a, int b, int x, int y);
-	// header 5, object, x, y
+	// header 4, object, x, y
 	void gameSendP(int pass, int a, int b);
-	// header 6, x, y
+	// header 5, x, y
 	void gameSend(int a, int b);
 
 	//
 	void gameRecv(int player, GameObject* object[]);
 
-	void chatSend();
-	void chatRecv();
+	void chatSend(char* chat);
 };
 

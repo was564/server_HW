@@ -1,9 +1,12 @@
 #pragma once
 #include "Init.h"
 #include <fstream>
+#include <string>
 #include "Error.h"
 #include "Initialization.h"
 #include "Socket.h"
+
+static SOCKET play[2];
 
 class Communication : public Initialization, public Socket
 {
@@ -22,13 +25,12 @@ class Communication : public Initialization, public Socket
 
 public:
 	void init(LPVOID arg);
-	// header 1 || 7, id length, id, pw length, pw
+	// header 1, id length, id, pw length, pw
 	void loginRecv();
 	// header 2, player, t/f
 	bool loginSend(int index);
-	// header 7, id length, id, pw length, pw
-	void getRegist(char* id, char* pw);
 
+	void getRegist(char* id, char* pw);
 	// header 3, seed
 	void gameStart();
 

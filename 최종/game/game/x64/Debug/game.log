@@ -1,6 +1,7 @@
 ﻿  Communication.cpp
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(103,41): warning C4267:  '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(148,41): warning C4267:  '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(159,41): warning C4267:  '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\game\Communication.cpp(170,41): warning C4267:  '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\김홍준\documents\github\server_hw\최종\game\game\communication.cpp(103): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\김홍준\documents\github\server_hw\최종\game\game\communication.cpp(148): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\김홍준\documents\github\server_hw\최종\game\game\communication.cpp(159): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\김홍준\documents\github\server_hw\최종\game\game\communication.cpp(170): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\김홍준\documents\github\server_hw\최종\game\game\communication.cpp(223): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   game.vcxproj -> C:\Users\김홍준\Documents\GitHub\server_HW\최종\game\x64\Debug\game.exe

@@ -12,5 +12,6 @@ public:
 	void socket5(char* buf, int object, int p_x, int p_y);
 	void socket6(char* buf, int p_x, int p_y);
 	void socket7(char* buf, const char* id, const char* pw);
+	void socket8(char* buf, const char* chat);
 };
 

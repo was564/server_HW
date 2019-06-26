@@ -15,5 +15,3 @@ using namespace std;
 #define ENEMY 5
 #define MAX 20
 #define PLAYER 2
-
-static SOCKET play[2];

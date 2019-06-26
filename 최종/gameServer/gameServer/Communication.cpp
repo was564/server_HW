@@ -14,6 +14,10 @@ Communication::~Communication()
 	closesocket(client_sock);
 	printf("[TCP 서버] 클라이언트 종료: IP 주소=%s, 포트 번호=%d\n",
 		inet_ntoa(clientaddr.sin_addr), ntohs(clientaddr.sin_port));
+	ofstream logFile("log.txt", ios::app);
+	logFile << "클라이언트 종료: IP 주소=" << inet_ntoa(clientaddr.sin_addr)
+		<< ", 포트 번호=" << ntohs(clientaddr.sin_port) << endl;
+	logFile.close();
 }
 
 void Communication::init(LPVOID arg)
@@ -94,6 +98,7 @@ void Communication::gameStart()
 		err_display("send()");
 		exit(1);
 	}
+	cout << "Game Start" << endl;
 }
 
 void Communication::gameRecvNSend()
@@ -104,16 +109,28 @@ void Communication::gameRecvNSend()
 		err_display("recv()");
 		exit(1);
 	}
-	if (buf[0] >= 4 && buf[0] <= 6) {
-		for (int i = 0; i < PLAYER; i++) {
-			if (i == pass) {
-				continue;
-			}
-			retval = send(play[i], buf, retval, 0);
-			if (retval == SOCKET_ERROR) {
-				err_display("send()");
-				exit(1);
-			}
+
+	ofstream logFile("log.txt", ios::app);
+	if (buf[0] != 8) {
+		logFile << "player " << getPass() << (int)buf[1] << ", " << (int)buf[2]
+			<< "로 이동함" << endl;
+
+		cout << "player " << getPass() << (int)buf[1] << ", " << (int)buf[2]
+			<< "로 이동함" << endl;
+	}
+	else {
+		logFile << "p" << getPass() << ": " << &buf[1] << endl;
+		cout << "p" << getPass() << ": " << &buf[1] << endl;
+	}
+	logFile.close();
+	for (int i = 0; i < PLAYER; i++) {
+		if (i == pass) {
+			continue;
+		}
+		retval = send(play[i], buf, retval, 0);
+		if (retval == SOCKET_ERROR) {
+			err_display("send()");
+			exit(1);
 		}
 	}
 }
@@ -126,9 +143,12 @@ void Communication::file_init()
 	outFile << "2" << endl;
 	outFile << "2" << endl;
 	outFile.close();
+	ofstream logFile("log.txt");
+	logFile.close();
 }
 
 int Communication::getPass()
 {
 	return pass;
 }
+

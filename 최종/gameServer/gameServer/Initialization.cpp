@@ -13,6 +13,15 @@ void Initialization::Accept()
 	printf("\n[TCP 서버] 클라이언트 접속: IP 주소=%s, 포트 번호=%d\n",
 		inet_ntoa(clientaddr.sin_addr), ntohs(clientaddr.sin_port));
 
+	ofstream logFile("log.txt", ios::app);
+	logFile << "클라이언트 접속: IP 주소=" << inet_ntoa(clientaddr.sin_addr)
+		<< ", 포트 번호=" << ntohs(clientaddr.sin_port) << endl;
+
+	cout << "클라이언트 접속: IP 주소=" << inet_ntoa(clientaddr.sin_addr)
+		<< ", 포트 번호=" << ntohs(clientaddr.sin_port) << endl;
+
+	logFile.close();
+
 	// 스레드 생성
 	hThread = CreateThread(NULL, 0, ProcessClient,
 		(LPVOID)client_sock, 0, NULL);

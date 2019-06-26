@@ -55,3 +55,10 @@ void Socket::socket7(char* buf, const char* id, const char* pw)
 	buf[2 + strlen(id)] = (int)strlen(pw);
 	strcpy(&buf[3 + strlen(id)], pw);
 }
+
+void Socket::socket8(char* buf, const char* chat)
+{
+	memset(buf, 0, sizeof(buf));
+	buf[0] = 8;
+	strcpy(&buf[1], chat);
+}

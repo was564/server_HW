@@ -217,6 +217,15 @@ void Player::processInput(GameObject* object[], int objectCount)
 				return;
 			}
 			break;
+		case 't':
+			getchar();
+			char chat[100];
+			memset(chat, 0, sizeof(chat));
+			gotoxy(WIDTH + 4, 3);
+			scanf("%s", chat);
+			gotoxy(WIDTH + 4, 3);
+			printf("                                                               ");
+			com->chatSend(chat);
 		}
 		for (int i = 0; i < objectCount; i++) {
 			object[i]->update();
